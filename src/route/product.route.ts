@@ -7,7 +7,7 @@ import {
   updateProduct,
 } from "../controllers/product.controller";
 
-import { protect } from "../middleware/auth.middleware";
+import { authorize, protect } from "../middleware/auth.middleware";
 
 const router: Router = express.Router();
 
@@ -15,9 +15,16 @@ const router: Router = express.Router();
 
 // router.get("/", getProducts);
 
-router.route("/").post(protect, createProduct).get(getProducts);
+router
+  .route("/")
+  .post(protect, authorize(["admin"]), createProduct)
+  .get(getProducts);
 
-router.route("/:id").get(getProduct).delete(deleteProduct).put(updateProduct);
+router
+  .route("/:id")
+  .get(getProduct)
+  .delete(protect, deleteProduct)
+  .put(protect, updateProduct);
 
 // router.get("/:id", getProduct);
 

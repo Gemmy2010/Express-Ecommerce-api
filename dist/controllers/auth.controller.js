@@ -47,6 +47,7 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(400);
         return next(new Error(`You have provided wrong credentials`));
     }
+    //@ts-ignore
     const token = jsonwebtoken_1.default.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });

@@ -52,10 +52,13 @@ export const login = async (
     res.status(400);
     return next(new Error(`You have provided wrong credentials`));
   }
-
+ //@ts-ignore
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
+
+
+  
 
   res.json({
     status: "success",
