@@ -42,7 +42,9 @@ export const protect = asyncHandler(
     } catch (error) {
       console.log(error);
       res.status(401);
-      return next(new Error("You are not authorized"));
+      return next(
+        new Error("You are not authorized or your token has expired")
+      );
     }
 
     next();

@@ -3,6 +3,7 @@ import createMongooseConnection from "./database/mongo.database";
 import ProductRouter from "./route/product.route";
 import AuthRouter from "./route/auth.route";
 import UserRouter from "./route/user.route";
+import ReviewRouter from "./route/review.route";
 import { globalError } from "./middleware/globalError";
 
 require("dotenv").config();
@@ -15,11 +16,10 @@ app.use(express.json());
 
 // Products resource
 
-
-
 app.use("/products", ProductRouter);
-app.use("/Auth", AuthRouter);
-app.use("/User", UserRouter);
+app.use("/auth", AuthRouter);
+app.use("/user", UserRouter);
+app.use("/reviews", ReviewRouter);
 
 // app.get("/products", getProducts);
 

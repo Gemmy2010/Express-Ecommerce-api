@@ -45,7 +45,7 @@ exports.protect = (0, express_async_handler_1.default)((req, res, next) => __awa
     catch (error) {
         console.log(error);
         res.status(401);
-        return next(new Error("You are not authorized"));
+        return next(new Error("You are not authorized or your token has expired"));
     }
     next();
 }));
